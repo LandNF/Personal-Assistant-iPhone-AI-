@@ -1,0 +1,642 @@
+import re 
+# import 27 day or 48 
+import sqlite3 
+import time 
+import calendar 
+import sys 
+import os 
+import speech 
+import webbrowser 
+from time import sleep 
+from math import * 
+from collections import Counter 
+from string import punctuation 
+from objc_util import * 
+import reminders
+import dialogs 
+from datetime import datetime, timedelta 
+class Setup: 
+	'''
+	Part Jarsey -- Getting Started 🏁
+			
+	Welcome to Jarcey and alex tutorial for Pythonista!
+			
+	We're going to talk or ask, mot
+	
+	''' 
+	speech.say("loading systems ") 
+	
+	speech.say("systems online ") 
+	
+	S = str(" ") 
+	while True: 
+			FD = ("im sorry... i dont understan ")
+			B = input(":_") 
+			
+			localtime = time.asctime(time.localtime(time.time()))  
+	
+			calendar = ["what time is it", "What is the time", "what is the time "] 
+			ca = ["what", "perectn" ,"lv"] 
+			while True:
+			
+				if B == 'by':
+					print("bye ")
+					end = time.time()
+					print("Our coversation lasted: ", end="")
+					print(end - start)
+					break
+				if "time" in B: 
+					H = int(time.strftime("%H")) 
+					S = time.strftime("%B") 
+					while True: 
+						if (H >= 13) & (H < 20): 
+							M = H - 12 
+							print(time.strftime(str(M) + ":%M pm ")) 
+							speech.say(time.strftime("it is " + str(M) + ":%M pm ")) 
+						if H > 20: 
+							M = H - 12 
+							print(time.strftime("wow, its late: " + str(M) + ":%M ")) 
+							speech.say(time.strftime("wow its late: " + str(M) + ":%M ")) 
+						if (H < 12 & H >= 1): 
+							print(time.strftime("%H:%M pm "))
+							break 
+						if H < 8: 
+							print(time.strftime("wow, its late: %H:%M")) 
+						if H == 12:
+							print(time.strftime("Its %H:%M pm")) 
+						if H == 00: 
+							F = H + 12 
+							print(str(F) + "") 
+						break 
+					break 
+
+				if "cool" in B: 
+					print("we all love Lucy!!! ")
+					# system("say 'Local current time: ' " + localtime) 
+					
+				if "dat" in B: 
+					print(time.strftime("%d %B ")) 
+					speech.say("today's date is " + time.strftime("%d %B")) 
+					# system("say 'Local current time: ' " + localtime)
+					#print("Here is a calendar: ")
+					#print(c) 
+					# system("say 'Here is a calendar '")
+					break 
+				if "Lucy" in B: 
+					print("I, LOVE LUCY, SO MUCH!! ") 
+					speech.say("I LOVE Lucy SO MUCH!!")
+					# system("say 'Here you go'") 
+					break 
+				if "countdow" in B:
+					# system("say ' Enter the number of secound ' ")
+					speech.say("enter the number of secound ") 
+					f = input("Enter the number of secound: ") 
+					f = int(f) 
+					for i in range(0, f):
+						l = (f - i)
+						sleep(1)
+						print(l)
+					speech.say("don ")
+					# system("say ' Done Done Done Done Done Done Done Done ' ")
+					break
+				if "tax" in B:
+					# system("say 'Cost of meal with Tax ' ")
+					speech.say("with tax or without ")
+					C = input("With tax or without tax : ")
+					eal = ["Without tax", "Without", "without "]
+					fel = ["With tax", "With", "with "] 
+					if C == fel:
+						speech.say("cost of meal with tax ")
+						meal = input("Cost of meal with tax: ")
+						meal = meal.replace(",", "")
+						# system("say ' Tip ' ")
+						speech.say("tip perecen ")
+						percentaf = input("Tip percent: ")
+						percentaf = percentaf.replace("%", "")
+						percentaf = float(float(percentaf) / 100)
+						float(percentaf)
+						nine = float(float(percentaf) * float(meal))
+						meal = float(float(meal) + float(meal) * float(percentaf))
+						print("Tip: " + str(nine))
+						speech.say("Tib " + str(nine))
+						print("Cost: " + str(meal))
+						speech.say("Cob " + str(meal))
+						# system("say ' ' " + str(meal) + "dollar")
+						break
+					else:
+						speech.say("cost of meal without tax ")
+						meal = input("Cost of meal without tax: $ ")
+						# system("Cost of meal withou ")
+						speech.say("tip percent ")
+						percentaf = input("Tip percent: % ")
+						percentaf = float(float(percentaf) / 100)
+						nine = float(float(percentaf) * float(meal))
+						meal = float(float(meal) + float(meal) * float(percentaf))
+						print("Tip: " + str(nine))
+						speech.say("Tip " + str(nine))
+						print("Cost: " + str(meal))
+						speech.say("Cos " + str(meal))
+						break
+				if "in a day" in B:
+					# system("How many hours")
+					speech.say("how mang ours ")
+					urs = input("How many hours: ")
+					float(urs)
+					minutes = float(float(urs) * 60)
+					percentag = float(float(minutes) / 14.4)
+					print(str(percentag) + "% of the da ")
+					soeech.say("percenag of da ")
+					# system("say ' ' " + str(percentag))
+					break
+				if "list" in B: 
+					def main():
+						todo = reminders.get_reminders(completed=False)
+						print('TODO List\n=========')
+						for r in todo:
+							print('[ ] ' + r.title) 
+							speech.say(r.title)
+						done = reminders.get_reminders(completed=True)
+						print('DONE\n====')
+						for r in done:
+							print('[x] ' + r.title)
+					if __name__ == '__main__': main() 
+				if "command" in B: 
+					y = ("I LOVE LUCY!!, We all love Lucy, Screen brightness, Calculator, Timer, Time, Cost of meal, Battery percen , Reminder, Writer, Add a ohone number, Date, Stopwatch, Percen of da , Calendar " ) 
+					print(y) 
+					speech.say(y)
+					break
+				if "write" in B:
+					speech.say("Ill wri e this don ")
+					input8 = input("What: ")
+					speech.say("would you like me to read it back to u ")
+					i = input("Would you lik me to read it bac to you: ")
+					while True:
+						if i == "yes":
+							print(input8)
+							speech.say(input8)
+							speech.say("should i save ")
+							ip = input("Save: ")
+							while True:
+								if ip == "yes":
+									input9 = input("What should i call it: ") 
+									speech.say("what should i call it ") 
+									sr = {input9: input8}
+									print(sr) 
+									print("save as" + input9 + " " + input8)
+								if ip == "no":
+									print("del ")
+									break
+						if i == "no":
+							speech.say("should i save  ")
+							im = input("Save: ")
+							while True:
+								if im == "yes":
+									input7 = input("What should i call i : ")
+									speech.say("wgat should i call it ")
+									sr = {input7: input8}
+									print(sr)
+									print(save)
+								if im == "no":
+									print("del ")
+									speech.say("del ")
+									break
+						break
+				if "stopwatch" in B:
+					speech.say("tell me whn to star ")
+					ix = input("Tell me whn to start: ")
+					start = time.time()
+					speech.say("tell me when to sto press retur ")
+					ou = input("Tell me when to stop (press return): ")
+					end = time.time()
+					print("It lasted: ", end="")
+					print(end - start)
+					break
+				if "cs" in B:
+					print(
+					"mputer scientists are, in fact, scientists. They are focused with the theory of computational applications. That means they understand the “why” behind computer programs. Using algorithms and advanced mathematics, computer scientists invent new ways to manipulate and transfer information. Computer scientists are generally concerned with software, operating systems, and implementation. Like Neo in The Matrix, computer scientists can see and make sense of code. Computer science students will learn the fundamentals of different programming languages, linear and discrete mathematics, and software design and development. Computer scientists study the machine itself and understand how and why various computer processes operate the way they do")
+					break
+				if "pull" in B:
+					speech.say("please dont jarce wants to live")
+					print("please dont...............jarce wants to live ")
+					break
+				'''if "remind" in B: 
+					speech.say("ok tell me what i should remind you about ") 
+					i = input("OK tell me what i should remind you about: ") 
+					print("- ")
+					M = int(time.strftime("%H")) 
+					S = int(time.strftime("%M")) 
+					ime = input("What hou : ") 
+					inp = input("What minute: ") 
+					di = {i: ime + ":" + inp + "minu es "} 
+					print(di) 
+					ime = int(ime) 
+					inp = int(inp) 
+					speech.say("ok i set an apointment called " + i + "to ring in " + str(ime) + ":" + str(inp) + "") 
+					i = input("Save: ") 
+					speech.say("sav ") 
+					while True:
+						if i == "yes": 
+
+							speech.say("should i schedule another appointments ") 
+							inp = input("Should i schedule another appointments: ") 
+						if i == "no": 
+							dict.clear(di) 
+							print(di) 
+							print("don ") 
+					break 
+				if "stopwatch" in B:
+					speech.say("ok go ahea ")
+					v = input("ok go ahea : ")
+					print(v)
+					speech.say(v) 
+				if "phone" in B:
+					speech.say("tell me the phone number ")
+					ad = input("Phone number: ")
+					speech.say("name ")
+					pb = input("Name is: ")
+					bv = {pb: ad}
+					print(bv)
+					speech.say("save " + pb + "" + ad)
+					i = input("Save yes or n : ")
+					while True:
+						if i == "yes":
+							print("s ")
+							break
+						if i == "no":
+							dict.clear(bv);
+							print("done ")
+							print(bv)
+							break ''' 
+				if "appointment" in B: 
+					def main(): 
+						speech.say("month ") 
+						F = input("Month: ") 
+						speech.say("day of month ") 
+						e = input("Day of month: ") 
+						e = e.replace("th", " ")
+						speech.say("hour ") 
+						p = input("Hour: ") 
+						p = p.replace("minutes", "b") 
+						speech.say("what minu ") 
+						n = input("Minute: ") 
+						p = p.replace("hours" , " ") 
+						e = e.replace("The ", " ") 
+						Miride = {F + e + ",at " + p + ": " + n} 
+						e = int(e) 
+						n = int(n) 
+						p = int(p) 
+						R = int(time.strftime("%d")) 
+						Fi = int(time.strftime("%H")) 
+						Mi = int(time.strftime("%M")) 
+						M = int(time.strftime("%j")) 
+						Pi = str(time.strftime("%B"))
+						yj = int(p - Fi) 
+						x = int(n - Mi) 
+						b = int(e - R) 
+						while True: 
+							if R == e: 
+								if Fi > 12:   
+									m = (yj * 60) + x + 720 
+									title = dialogs.input_alert('Remind m ', 'Enter a title.', '', 'Remind me')  
+									r = reminders.Reminder() 
+									r.title = title 
+									due = datetime.now() + timedelta(minutes = m ) 
+									r.due_date = due 
+									alarm = reminders.Alarm() 
+									alarm.date = due 
+									r.alarms = [alarm] 
+									r.save() 
+									print(Miride)  
+									break 
+								if Fi < 12: 
+									m = (yj * 60) + x 
+									title = dialogs.input_alert('Remind m ', 'Enter a title.', '', 'Remind me')  
+									r = reminders.Reminder() 
+									r.title = title 
+									due = datetime.now() + timedelta(minutes = m ) 
+									r.due_date = due 
+									alarm = reminders.Alarm() 
+									alarm.date = due 
+									r.alarms = [alarm] 
+									r.save() 
+									print(Miride) 
+									break 
+							else: 
+								A = 1 
+								B = 29 
+								C = 60 
+								D = 90 
+								E = 121 
+								Fp = 151 
+								G = 182 
+								I = 213 
+								J = 243 
+								K = 274 
+								L = 304 
+								O = 335 
+								if "January" in F: 
+												y = int(A - M) 
+								if "February" in F: 
+												y = int(B - M) 
+								if "march" in F: 
+												y = int(C - M) 
+								if "April" in F: 
+												y = int(D - M) 
+								if "May" in F: 
+												y = int(E - M) 
+								if "June" in F: 
+												y = int(Fp - M) 
+								if "July" in F: 
+												y = int(G - M) 
+								if "August" in F: 
+												y = int(I - M) 
+								if "September" in F: 
+												y = int(J - M) 
+								if "October" in F: 
+												y = int(K - M) 
+								if "November" in F: 
+												y = int(L - M) 
+								if "December" in F: 
+												y = int(O - M) 
+								g = input("Pm or am: ") 
+								while True: 
+									if "a" in g:
+										v =(e * 1440) + (yj * 60) + x + (y * 1440) 
+										title = dialogs.input_alert('Remind m ', 'Enter a title.', '', 'Remind me') 
+										r = reminders.Reminder() 
+										r.title = title 
+										due = datetime.now() + timedelta(minutes = v ) 
+										r.due_date = due 
+										alarm = reminders.Alarm() 
+										alarm.date = due 
+										r.alarms = [alarm] 
+										r.save() 
+										e = str(e) 
+										if e == 1 | 21: 
+											e = e.replace(e, e + "st") 
+										if e == 2 | 22: 
+											e = e.replace(e, e + "nd") 
+										if e == 3 | 23: 
+											e = e.replace(e, e + "rd") 
+										else: 
+											e = e.replace(e, e +"th") 
+										MU = ("Ok, I set a reminder called " + str(title) + " due for " + str(F) + " " + str(e) + " at " + str(p) + ":" + str(n) + "pm") 
+										print(MU) 
+										speech.say(MU) 
+										break 
+									if "p" in g: 
+										v =(e * 1440) + (yj * 60) + x + 720 + (y * 1440) 
+										title = dialogs.input_alert('Remind ', 'Enter a title.', '', 'Remind me') 
+										r = reminders.Reminder() 
+										r.title = title 
+										due = datetime.now() + timedelta(minutes = v ) 
+										r.due_date = due 
+										alarm = reminders.Alarm() 
+										alarm.date = due 
+										r.alarms = [alarm] 
+										r.save() 
+										e = str(e) 
+										if e == 1 | 21: 
+											e = e.replace(e, e + "st") 
+										if e == 2 | 22: 
+											e = e.replace(e, e + "nd") 
+										if e == 3 | 23: 
+											e = e.replace(e, e + "rd") 
+										else: 
+											e = e.replace(e, e +"th") 
+										MU = ("Ok, I set a reminder called " + str(title) + " due for " + str(F) + " " + str(e) + " at " + str(p) + ":" + str(n) + "pm") 
+										print(MU) 
+										speech.say(MU) 
+										break
+								else: 
+									print("Error 678") 
+									speech.say(FD) 
+								
+					if __name__ == '__main__': main() 
+				if "inc" in B: 
+					def main(): 
+						UIScreen = ObjCClass('UIScreen') 
+						screen = UIScreen.mainScreen() 
+						screen.setBrightness(.6) 
+
+					if __name__ == '__main__': main() 
+				if "dec" in B: 
+					def main(): 
+						UIScreen = ObjCClass('UIScreen') 
+						screen = UIScreen.mainScreen() 
+						screen.setBrightness(.3) 
+
+					if __name__ == '__main__': main() 
+				if "keep going up" in B: 
+					def main(): 
+						UIScreen = ObjCClass('UIScreen') 
+						screen = UIScreen.mainScreen() 
+						screen.setBrightness(.8) 
+
+					if __name__ == '__main__': main() 
+				if "screen" in B: 
+					def main(): 
+						UIScreen = ObjCClass('UIScreen') 
+						screen = UIScreen.mainScreen() 
+						i = input("What percent: ") 
+						i = i.replace("%", " ")
+						i = int(i) 
+						f = float(i / 100)
+						p = float(f + 0) 
+						screen.setBrightness(p)  
+						
+					if __name__ == '__main__': main() 
+				if "keep going down" in B: 
+					def main(): 
+						UIScreen = ObjCClass('UIScreen') 
+						screen = UIScreen.mainScreen() 
+						screen.setBrightness(.1) 
+						
+					if __name__ == '__main__': main () 
+				if "battery" in B: 
+					UIDevice = ObjCClass('UIDevice')
+					device = UIDevice.currentDevice()
+					battery_states = {1: 'unplugged', 2: 'charging', 3: 'full'}
+					device.setBatteryMonitoringEnabled_(True)
+					battery_percent = int(device.batteryLevel() * 100 )
+					speech.say("your battery is a " + str(battery_percent) + "percen ")
+					state = device.batteryState() 
+					state_str = battery_states.get(state, 'unknown') 
+					print('Battery level: %0.1f%% (%s)' % (battery_percent, state_str)) 
+					speech.say(str(state_str)) 
+					device.setBatteryMonitoringEnabled_(False) 
+				if "Google" in B: 
+					webbrowser.open("http://google.com") 
+					speech.say("Google opene ") 
+					break 
+				if "Maria" in B: 
+					webbrowser.open("https://m.youtube.com/watch?v=pwp1CH5R-w4") 
+					break 
+				if "nslate" in B: 
+					webbrowser.open("https://translate.google.com/m/translate") 
+					break 
+				if B in ca: 
+					while True: 
+						# system("say ' 1st number ' ") 
+						speech.say("1st number ") 
+						s = input("First number ") 
+						s = s.replace(",", "") 
+
+						# system("say '2nd number ' ") 
+						speech.say("2nd number ") 				
+						e = input("Secound number: ") 
+						e = e.replace(",", "") 
+
+						# system("say ' Operations list ' ") 
+						speech.say("operations lis ") 
+						f = input(
+						"Operations:   (+)   (-)   (*)   (/)   (^)   (%)   (e (1st#))   (square root of (1st#)): ") 
+						
+						if f == "+": 
+							value = float(float(s) + float(e)) 
+							print('{:,}'.format(value)) 
+							speech.say(str(value)) 
+							# system("say ' ' " + str(value)) 
+						if f == "-": 
+							value = float(float(s) - float(e)) 
+							print('{:,}'.format(value)) 
+							speech.say(str(value)) 
+							# system("say ' ' " + str(value)) 
+						if f == "*": 
+							value = float(float(s) * float(e)) 
+							print('{:,}'.format(value)) 
+							speech.say(str(value)) 
+							# system("say ' ' " + str(value)) 
+						if f == "/": 
+							value = float(float(s) / float(e)) 
+							print('{:,}'.format(value)) 
+							speech.say(str(value)) 
+							# system("say ' ' " + str(value)) 
+						if f == "^": 
+							value = float(float(s) ** float(e)) 
+							print('{:,}'.format(value)) 
+							speech.say(str(value)) 
+							# system("say ' ' " + str(value)) 
+						if f == "%": 
+							value = float(float(s) % float(e)) 
+							print('{:,}'.format(value)) 
+							speech.say(str(value)) 
+							# system("say ' ' " + str(value)) 
+						if f == "square root of " + s: 
+							value = float(sqrt(float(s))) 
+							print('{:,}'.format(value)) 
+							speech.say(str(value)) 
+							# system("say ' ' " + str(value)) 
+						if f == "e " + s: 
+							value = float(exp(float(s))) 
+							print('{:,}'.format(value)) 
+							speech.say(str(value)) 
+							# system("say ' ' " + str(value)) 
+					else: 
+						print("Error 358") 
+						speech.say(FD)
+					break 
+				if "lets" in B: 
+					connection = sqlite3.connect('chatbot.sqlite') 
+					cursor = connection.cursor() 
+
+					try: 
+					
+						cursor.execute('''
+						CREATE TABLE words (
+						word TEXT UNIQUE
+						)''') 
+						
+						cursor.execute('''
+						CREATE TABLE sentences (
+						sentence TEXT UNIQUE,
+						used INT NOT NULL DEFAULT 0
+						)''') 
+						
+						cursor.execute('''
+						CREATE TABLE associations (
+						word_id INT NOT NULL,
+						sentence_id INT NOT NULL,
+						weight REAL NOT NULL
+						)''') 
+						
+					except: 
+							pass 
+
+					def get_id(entityName, text): 
+							tableName = entityName + 's' 
+							columnName = entityName 
+							cursor.execute('SELECT rowid FROM ' + tableName + ' WHERE ' + columnName + ' = ?', (text,)) 
+							row = cursor.fetchone() 
+							if row: 
+								return row[0] 
+							else: 
+								cursor.execute('INSERT INTO ' + tableName + ' (' + columnName + ') VALUES (?)', (text,)) 
+								return cursor.lastrowid 
+
+					def get_words(text): 
+							wordsRegexpString = '(?:\w+|[' + re.escape(punctuation) + ']+)' 
+							wordsRegexp = re.compile(wordsRegexpString) 
+							wordsList = wordsRegexp.findall(text.lower()) 
+							return Counter(wordsList).items() 
+							
+							
+					A = ' How r u ' 
+						#system("say 'Hello, THIS IS AIM . What is your name.' ")
+						
+					L = input("Name:_")  
+						#system("say 'Welcome, ' " + L)
+					start = time.time() 
+					print("AIM:_ " + "Welcome, " + L) 
+						
+					while True: 
+						
+							def print_sl(str): 
+								for letter in str: 
+									sys.stdout.write(letter) 
+									sys.stdout.flush() 
+									time.sleep(.16) 
+									
+									
+							print("AIM:_", end="") 
+							print_sl(A) 
+							print(' ') 
+							#system("say ' '" + A)
+							
+							B = input(L + ":_").strip() 
+							
+							words = get_words(A) 
+							words_length = sum([n * len(word) for word, n in words]) 
+							sentence_id = get_id('sentence', B) 
+							for word, n in words: 
+								word_id = get_id('word', word) 
+								weight = sqrt(n / float(words_length)) 
+								cursor.execute('INSERT INTO associations VALUES (?, ?, ?)', (word_id, sentence_id, weight)) 
+								connection.commit() 
+							
+							cursor.execute('CREATE TEMPORARY TABLE results(sentence_id INT, sentence TEXT, weight REAL)') 
+							words = get_words(B) 
+							words_length = sum([n * len(word)  for word, n in words]) 
+							for word, n in words: 
+								weight = sqrt(n / float(words_length)) 
+								cursor.execute(
+								'INSERT INTO results SELECT associations.sentence_id, sentences.sentence, ?*associations.weight/(4+sentences.used) FROM words INNER JOIN associations ON associations.word_id=words.rowid INNER JOIN sentences ON sentences.rowid=associations.sentence_id WHERE words.word=?',
+								(weight, word,)) 
+								
+							cursor.execute(
+							'SELECT sentence_id, sentence, SUM(weight) AS sum_weight FROM results GROUP BY sentence_id ORDER BY sum_weight DESC LIMIT 	1')
+							row = cursor.fetchone() 
+							cursor.execute('DROP TABLE results') 
+							
+							if row is None:
+								cursor.execute(
+								'SELECT rowid, sentence FROM sentences WHERE used = (SELECT MIN(used) FROM sentences) ORDER BY RANDOM() LIMIT 1') 
+								row = cursor.fetchone() 
+								
+							A = row[1] 
+							cursor.execute('UPDATE sentences SET used=used+1 WHERE rowid=?', (row[0],)) 
+				
+				else: 
+					print("Error: 123 ") 
+					speech.say(FD) 
+					break 
