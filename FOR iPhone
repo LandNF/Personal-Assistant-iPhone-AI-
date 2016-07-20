@@ -1,5 +1,5 @@
 import re 
-# import 27 day or 48 
+# import 29 day or 48 
 import sqlite3 
 import time 
 import calendar 
@@ -7,15 +7,17 @@ import sys
 import os 
 import speech 
 import webbrowser 
+import reminders 
+import dialogs 
 from time import sleep 
 from math import * 
 from collections import Counter 
 from string import punctuation 
 from objc_util import * 
-import reminders
-import dialogs 
 from datetime import datetime, timedelta 
-class Setup: 
+
+while True: 
+	
 	'''
 	Part Jarsey -- Getting Started 🏁
 			
@@ -25,31 +27,54 @@ class Setup:
 	
 	''' 
 	speech.say("loading systems ") 
-	
+	time.sleep(2) 
 	speech.say("systems online ") 
-	
+	P = int(time.strftime("%H")) 
+	if (P >= 13) & (P <= 20): 
+		M = P - 12 
+		q = (time.strftime(str(M) + ":%M pm " + "-- %d %B")) 
+		print('{:^48}'.format(q)) 
+		speech.say("good evening sir ") 
+	if P > 20: 
+		M = P - 12 
+		q = (time.strftime(str(M) + ":%M pm " + "-- %d %B")) 
+		print('{:^48}'.format(q)) 
+		speech.say("i see were burning the midnight oil... sir ") 
+	if (P <= 12) & (P >= 1): 
+		p = (time.strftime(str(M) + ":%M pm " + "-- %d %B")) 
+		print('{:^48}'.format(q)) 
+		speech.say("good morning sir ") 
+	if P < 8: 
+		q = (time.strftime(str(M) + ":%M pm " + "-- %d %B")) 
+		print('{:^48}'.format(q)) 
+	print("--- ") 
 	S = str(" ") 
 	while True: 
-			FD = ("im sorry... i dont understan ")
+			FD = ("im sorry... i dont understan ") 
 			B = input(":_") 
+			B = B.title() 
 			
 			localtime = time.asctime(time.localtime(time.time()))  
 	
 			calendar = ["what time is it", "What is the time", "what is the time "] 
 			ca = ["what", "perectn" ,"lv"] 
 			while True:
-			
+				if "God" in B: 
+					webbrowser.open("https://m.youtube.com/watch?v=6RGcb7alSk0") 
+					break 
+				if "Maria" in B: 
+					webbrowser.open("https://m.youtube.com/watch?v=pwp1CH5R-w4") 
+					break 
 				if B == 'by':
 					print("bye ")
 					end = time.time()
 					print("Our coversation lasted: ", end="")
 					print(end - start)
 					break
-				if "time" in B: 
+				if "ime" in B: 
 					H = int(time.strftime("%H")) 
-					S = time.strftime("%B") 
 					while True: 
-						if (H >= 13) & (H < 20): 
+						if (H >= 13) & (H <= 20): 
 							M = H - 12 
 							print(time.strftime(str(M) + ":%M pm ")) 
 							speech.say(time.strftime("it is " + str(M) + ":%M pm ")) 
@@ -57,24 +82,22 @@ class Setup:
 							M = H - 12 
 							print(time.strftime("wow, its late: " + str(M) + ":%M ")) 
 							speech.say(time.strftime("wow its late: " + str(M) + ":%M ")) 
-						if (H < 12 & H >= 1): 
+						if (H <= 12) & (H >= 1): 
 							print(time.strftime("%H:%M pm "))
 							break 
 						if H < 8: 
 							print(time.strftime("wow, its late: %H:%M")) 
-						if H == 12:
-							print(time.strftime("Its %H:%M pm")) 
 						if H == 00: 
 							F = H + 12 
 							print(str(F) + "") 
 						break 
 					break 
 
-				if "cool" in B: 
-					print("we all love Lucy!!! ")
+				if "ool" in B: 
+					print("we all love Lucy!!! ") 
 					# system("say 'Local current time: ' " + localtime) 
 					
-				if "dat" in B: 
+				if "ate" in B: 
 					print(time.strftime("%d %B ")) 
 					speech.say("today's date is " + time.strftime("%d %B")) 
 					# system("say 'Local current time: ' " + localtime)
@@ -87,7 +110,7 @@ class Setup:
 					speech.say("I LOVE Lucy SO MUCH!!")
 					# system("say 'Here you go'") 
 					break 
-				if "countdow" in B:
+				if "ountdow" in B:
 					# system("say ' Enter the number of secound ' ")
 					speech.say("enter the number of secound ") 
 					f = input("Enter the number of secound: ") 
@@ -99,7 +122,7 @@ class Setup:
 					speech.say("don ")
 					# system("say ' Done Done Done Done Done Done Done Done ' ")
 					break
-				if "tax" in B:
+				if "ax" in B:
 					# system("say 'Cost of meal with Tax ' ")
 					speech.say("with tax or without ")
 					C = input("With tax or without tax : ")
@@ -148,7 +171,7 @@ class Setup:
 					soeech.say("percenag of da ")
 					# system("say ' ' " + str(percentag))
 					break
-				if "list" in B: 
+				if "ist" in B: 
 					def main():
 						todo = reminders.get_reminders(completed=False)
 						print('TODO List\n=========')
@@ -160,12 +183,12 @@ class Setup:
 						for r in done:
 							print('[x] ' + r.title)
 					if __name__ == '__main__': main() 
-				if "command" in B: 
-					y = ("I LOVE LUCY!!, We all love Lucy, Screen brightness, Calculator, Timer, Time, Cost of meal, Battery percen , Reminder, Writer, Add a ohone number, Date, Stopwatch, Percen of da , Calendar " ) 
+				if "ommand" in B: 
+					y = ("I LOVE LUCY!!, We all love Lucy, Screen brightness, Calculator, Timer, Time, Cost of meal, Battery percen , Reminder, Writer, Add a ohone number, Date, Stopwatch, Percen of da , Calendar, Google, Recipes, Movie " ) 
 					print(y) 
 					speech.say(y)
 					break
-				if "write" in B:
+				if "rit" in B:
 					speech.say("Ill wri e this don ")
 					input8 = input("What: ")
 					speech.say("would you like me to read it back to u ")
@@ -201,7 +224,7 @@ class Setup:
 									speech.say("del ")
 									break
 						break
-				if "stopwatch" in B:
+				if "opwatch" in B:
 					speech.say("tell me whn to star ")
 					ix = input("Tell me whn to start: ")
 					start = time.time()
@@ -219,7 +242,7 @@ class Setup:
 					speech.say("please dont jarce wants to live")
 					print("please dont...............jarce wants to live ")
 					break
-				'''if "remind" in B: 
+				if "remind" in B: 
 					speech.say("ok tell me what i should remind you about ") 
 					i = input("OK tell me what i should remind you about: ") 
 					print("- ")
@@ -266,8 +289,8 @@ class Setup:
 							dict.clear(bv);
 							print("done ")
 							print(bv)
-							break ''' 
-				if "appointment" in B: 
+							break 
+				if "ppointment" in B: 
 					def main(): 
 						speech.say("month ") 
 						F = input("Month: ") 
@@ -413,28 +436,28 @@ class Setup:
 									speech.say(FD) 
 								
 					if __name__ == '__main__': main() 
-				if "inc" in B: 
+				if "ncres" in B: 
 					def main(): 
 						UIScreen = ObjCClass('UIScreen') 
 						screen = UIScreen.mainScreen() 
 						screen.setBrightness(.6) 
 
 					if __name__ == '__main__': main() 
-				if "dec" in B: 
+				if "ecres" in B: 
 					def main(): 
 						UIScreen = ObjCClass('UIScreen') 
 						screen = UIScreen.mainScreen() 
 						screen.setBrightness(.3) 
 
 					if __name__ == '__main__': main() 
-				if "keep going up" in B: 
+				if "eep going up" in B: 
 					def main(): 
 						UIScreen = ObjCClass('UIScreen') 
 						screen = UIScreen.mainScreen() 
 						screen.setBrightness(.8) 
 
 					if __name__ == '__main__': main() 
-				if "screen" in B: 
+				if "creen" in B: 
 					def main(): 
 						UIScreen = ObjCClass('UIScreen') 
 						screen = UIScreen.mainScreen() 
@@ -446,14 +469,14 @@ class Setup:
 						screen.setBrightness(p)  
 						
 					if __name__ == '__main__': main() 
-				if "keep going down" in B: 
+				if "eep going down" in B: 
 					def main(): 
 						UIScreen = ObjCClass('UIScreen') 
 						screen = UIScreen.mainScreen() 
 						screen.setBrightness(.1) 
 						
 					if __name__ == '__main__': main () 
-				if "battery" in B: 
+				if "attery" in B: 
 					UIDevice = ObjCClass('UIDevice')
 					device = UIDevice.currentDevice()
 					battery_states = {1: 'unplugged', 2: 'charging', 3: 'full'}
@@ -466,15 +489,33 @@ class Setup:
 					speech.say(str(state_str)) 
 					device.setBatteryMonitoringEnabled_(False) 
 				if "Google" in B: 
-					webbrowser.open("http://google.com") 
-					speech.say("Google opene ") 
+					speech.say("what should i loo u ") 
+					S = input("What should i loo u: ") 
+					S = S.replace("'", "%27") 
+					S = S.replace(" ", "+") 
+					
+					webbrowser.open("https://www.google.com/search?site=&source=hp&ei=eEeOV_L4L8vYmwHew5bgDQ&q=" + S + "&oq=" + S + "&gs_l=mobile-gws-hp.3...2085.2672.0.2885.7.6.1.0.0.0.185.633.2j3.5.0....0...1c.1.64.mobile-gws-hp..2.4.471.3..35i39j0i131j0i67j0i46i67j46i67.vxujtI7zNFQ") 
+					speech.say("opene ") 
 					break 
-				if "Maria" in B: 
-					webbrowser.open("https://m.youtube.com/watch?v=pwp1CH5R-w4") 
-					break 
+				if "Movie" in B: 
+					speech.say("what movie would u like me to look u ") 
+					S = input("heloo, what movie would u like me to loo u: ") 
+					S = S.replace("'", "%27") 
+					S = S. replace(" ", "_") 
+					
+					webbrowser.open("https://www.rottentomatoes.com/m/" + S) 
+				if "Recipes" in B: 
+					speech.say("what movie would u like me to luk u ") 
+					S = input("what movie woul u lik me too luk u ") 
+					S = S.replace("'", "%27") 
+					S = S.replace(" ", "_") 
+					
+					webbrowser.open("http://allrecipes.com/search/results/?wt=" + S + "&sort=re") 
 				if "nslate" in B: 
 					webbrowser.open("https://translate.google.com/m/translate") 
 					break 
+				if "welllo u: " in B: 
+					print("welllo u")
 				if B in ca: 
 					while True: 
 						# system("say ' 1st number ' ") 
@@ -584,7 +625,7 @@ class Setup:
 					A = ' How r u ' 
 						#system("say 'Hello, THIS IS AIM . What is your name.' ")
 						
-					L = input("Name:_")  
+					L = input("Name:_") 
 						#system("say 'Welcome, ' " + L)
 					start = time.time() 
 					print("AIM:_ " + "Welcome, " + L) 
@@ -596,10 +637,10 @@ class Setup:
 									sys.stdout.write(letter) 
 									sys.stdout.flush() 
 									time.sleep(.16) 
-									
-									
+
 							print("AIM:_", end="") 
 							print_sl(A) 
+							speech.say(A) 
 							print(' ') 
 							#system("say ' '" + A)
 							
@@ -635,7 +676,6 @@ class Setup:
 								
 							A = row[1] 
 							cursor.execute('UPDATE sentences SET used=used+1 WHERE rowid=?', (row[0],)) 
-				
 				else: 
 					print("Error: 123 ") 
 					speech.say(FD) 
